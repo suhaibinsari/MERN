@@ -1,5 +1,5 @@
 // method 2 to get mongoose
-const {Schema, model} = require('mongoose')
+const {Schema, model} = require('mongoose');
 //
 
 

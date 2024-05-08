@@ -33,18 +33,3 @@ const signupSchema = z.object({
 module.exports = signupSchema
 
 
-
-
-
-const signinSchema = z.object({
-    email: z
-    .string({required_error: "Email not found"})
-    ,
-    password: z
-    .string({required_error: "Passowrd not in matched"})
-
-
-})
-
-
-module.exports = signinSchema

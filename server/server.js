@@ -2,14 +2,19 @@
 require("dotenv").config(); // required to get env file
 const express = require("express");
 const app = express();
-const router = require('./routes/auth-router')
+const authRoute = require('./routes/auth-router')
+const contactRoute = require('./routes/contact-router')
 const connectDb = require('./utils/db');
 const errorMiddleware = require("./middlewares/error-middleware");
 
 app.use(express.json()) // requuired to show json formate
 
 
-app.use('/api/auth', router)
+app.use('/api/auth', authRoute)
+
+//contact route
+app.use('/api/form', contactRoute)
+
 
 app.get('/', (req, res) => {
     res.status(200).send('hello world')
