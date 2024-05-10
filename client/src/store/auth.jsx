@@ -17,6 +17,7 @@ const [token, setToken]= useState(localStorage.getItem('token'))
   }
 
   let userIsLoggedIn = !!token;
+  console.log("User is Logged In",userIsLoggedIn)
 
 
   // tacling Logout functionality

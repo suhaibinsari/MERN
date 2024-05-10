@@ -6,7 +6,7 @@ import Service from "./pages/Service/page"
 import Login from "./pages/Login/page"
 import Signup from "./pages/Signup/page"
 import Error from "./pages/Error/page"
-import {Logout} from "./pages/Logout/page"
+import Logout from "./pages/Logout/page"
 
 import Navbar from "./components/Navbar"
 
