@@ -1,13 +1,28 @@
 
 require("dotenv").config(); // required to get env file
 const express = require("express");
+// CORS is a security feature implemented in web browsers to prevent unauthorized access to resources hosted on a different domain
+const cors = require('cors');
+
 const app = express();
 const authRoute = require('./routes/auth-router')
 const contactRoute = require('./routes/contact-router')
 const connectDb = require('./utils/db');
 const errorMiddleware = require("./middlewares/error-middleware");
 
-app.use(express.json()) // requuired to show json formate
+
+// let tackle cors/ unauutohorized access
+
+const corsOptions = {
+    origin: "http://localhost:5173",
+    method:"GET, POST, PUT, DELETE, PATCH, HEAD",
+    credentials: true,
+}
+
+app.use(cors(corsOptions))
+
+
+app.use(express.json()) // required to show json formate
 
 
 app.use('/api/auth', authRoute)
