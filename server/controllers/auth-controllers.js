@@ -95,22 +95,22 @@ const login = async (req, res) => {
         const userExist = await User.findOne({ email })
         console.log(userExist)
 
-        if(!userExist){
-            return res.status(400).json({message: "invalid credentials"})
+        if (!userExist) {
+            return res.status(400).json({ message: "invalid credentials" })
         }
 
-      // method 1 => const isPasswordValid = await bcrypt.compare(password, userExist.password)
-      // method 2
+        // method 1 => const isPasswordValid = await bcrypt.compare(password, userExist.password)
+        // method 2
         const isPasswordValid = await userExist.comparePassword(password)
 
-        if(isPasswordValid){
+        if (isPasswordValid) {
             res.status(200).json({
                 msg: 'Login sucessful',
                 token: await userExist.generateToken(),
                 userId: userExist._id.toString()
             })
-        }else{
-            res.status(401).json({message: 'Invalid email or password'})
+        } else {
+            res.status(401).json({ message: 'Invalid email or password' })
         }
 
     } catch (error) {
@@ -131,8 +131,17 @@ const login = async (req, res) => {
 }
 
 
+const user = async (req, res) => {
+    try {
 
+        const userData = req.user
+        console.log(userData)
+        res.status(200).json({ message: userData })
+    } catch (error) {
+        console.log(`error from jwt verification/ user router ${error}`)
+    }
 
+}
 
-module.exports = { home, register, login }
+module.exports = { home, register, login, user }
 
