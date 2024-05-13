@@ -136,7 +136,7 @@ const user = async (req, res) => {
 
         const userData = req.user
         console.log(userData)
-        res.status(200).json({ message: userData })
+        res.status(200).json({ userData })
     } catch (error) {
         console.log(`error from jwt verification/ user router ${error}`)
     }

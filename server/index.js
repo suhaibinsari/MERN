@@ -7,6 +7,7 @@ const cors = require('cors');
 const app = express();
 const authRoute = require('./routes/auth-router')
 const contactRoute = require('./routes/contact-router')
+const serviceRoute = require('./routes/service-router')
 const connectDb = require('./utils/db');
 const errorMiddleware = require("./middlewares/error-middleware");
 
@@ -24,11 +25,12 @@ app.use(cors(corsOptions))
 
 app.use(express.json()) // required to show json formate
 
-
+//auth route - login/signup
 app.use('/api/auth', authRoute)
-
 //contact route
 app.use('/api/form', contactRoute)
+//contact route
+app.use('/api/data', serviceRoute)
 
 
 app.get('/', (req, res) => {

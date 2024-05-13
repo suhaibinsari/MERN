@@ -40,8 +40,8 @@ try{
     console.log('Error from Token Auth Middle-ware',error)
     res.status(401).json({message: "Unauthorized, Invalid Token Middelware auth"})
 }
-
 next()
+
 }
 
 module.exports = authMiddleware

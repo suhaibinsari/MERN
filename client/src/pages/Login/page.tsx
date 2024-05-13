@@ -2,14 +2,15 @@ import React, { useState } from 'react'
 import { useAuth } from '../../store/auth'
 import Button from '../../components/Button'
 import { NavLink, useNavigate } from 'react-router-dom'
-export default function page() {
 
+
+export default function page() {
 
   const URL = "http://localhost:3000/api/auth/login"
   const Navigate = useNavigate()
 
   // local stroage
-  const {storeTokenInLs} = useAuth();
+  const { storeTokenInLs } = useAuth();
 
   const [userLogin, setuserLogin] = useState({
     email: "",
@@ -25,10 +26,6 @@ export default function page() {
       ...userLogin,
       [name]: value
     })
-
-
-
-
 
   }
 
@@ -51,9 +48,10 @@ export default function page() {
       if (response.ok) {
 
         // JWT Local storage
+        // Not necessaryy these two lines just to show outpuut
         const res_data = await response.json()
         console.log('Response from server', res_data)
-
+        //
 
         // coming from store => auth
         storeTokenInLs(res_data.token);
