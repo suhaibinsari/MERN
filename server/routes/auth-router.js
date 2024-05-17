@@ -17,7 +17,7 @@ const authControllers = require('../controllers/auth-controllers')
 
 
 
-const signupSchema = require('../validators/auth-validator')
+const {signupSchema, loginSchema} = require('../validators/auth-validator')
 
 
 // adding validate from zod which we have created
@@ -54,7 +54,7 @@ const authMiddleware = require('../middlewares/auth-Middleware')
 
 router.route('/').get(authControllers.home)
 router.route('/register').post(validate(signupSchema), authControllers.register)
-router.route('/login').post(authControllers.login)
+router.route('/login').post(validate(loginSchema), authControllers.login)
 // jwt token verification
 router.route('/user').get(authMiddleware, authControllers.user)
 

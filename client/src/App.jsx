@@ -7,8 +7,10 @@ import Login from "./pages/Login/page"
 import Signup from "./pages/Signup/page"
 import Error from "./pages/Error/page"
 import Logout from "./pages/Logout/page"
-
+import AdminUser from "./pages/AdminUser/page.tsx"
+import AdminContacts from "./pages/AdminContacts/page.tsx"
 import Navbar from "./components/Navbar"
+import AdminLayout from "./components/Layout/Admin-Layout"
 
 
 
@@ -27,6 +29,12 @@ export default function App() {
           <Route path="/sign-up" element={<Signup />} />
           <Route path="/log-out" element={<Logout />} />
           <Route path="*" element={<Error />} />
+          {/* Nexted Rouute */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route path="users" element={<AdminUser />} />
+            <Route path="contacts" element={<AdminContacts />} />
+          </Route>
+          {/* End */}
         </Routes>
       </BrowserRouter>
     </>

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import { useAuth } from '../../store/auth'
 import Contact from '../../../../server/models/contact-model';
+import { toast } from 'react-toastify';
 
 
 export default function page() {
@@ -44,7 +45,7 @@ export default function page() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    alert(message)
+    // alert(message)
     console.log(message)
 
     try {
@@ -56,14 +57,16 @@ export default function page() {
         body: JSON.stringify(message)
       })
       console.log(response)
+      const res_data = await response.json()
+      // console.log('Response from Contact Frontend', res_data)
 
       if(response.ok){
         setMessage(defaultContactForm)
         // Not necessaryy these two lines just to show outpuut
-        const res_data = await response.json()
-        console.log('Response from Contact Frontend', res_data)
         //
-        alert('send sucessfully')
+        toast.success('Message Send Sucessful')
+      }else{
+        toast.error(res_data.extraError ?  res_data.extraError : res_data.message)
       }
 
     } catch (error) {

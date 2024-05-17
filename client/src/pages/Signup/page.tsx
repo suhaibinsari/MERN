@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../../components/Button'
 import { useAuth } from '../../store/auth'
+import { toast } from 'react-toastify'
 export default function page() {
+
 
 
 const URL = "http://localhost:3000/api/auth/register"
@@ -51,10 +53,10 @@ const URL = "http://localhost:3000/api/auth/register"
       })
       console.log(response)
 
+      const res_data = await response.json()
+      console.log("Registration Data", res_data.extraError)
 
     if(response.ok){
-      const res_data = await response.json()
-      console.log("Registration Data", res_data)
       storeTokenInLs(res_data.token);
       setUser({
         username: "",
@@ -62,9 +64,11 @@ const URL = "http://localhost:3000/api/auth/register"
         password: "",
         phone: ""
       })
-
+      toast.success("Registration Suucessful")
       Navigate('/log-in')
-      alert("Registration Complete")
+      toast("Registration Complete")
+    }else{
+      toast.error(res_data.extraError ? res_data.extraError : res_data.message)
     }
 
     } catch (error) {

@@ -66,14 +66,16 @@ const Navbar = () => {
               <NavLink to="/log-out">
                 <span className=" transition-colors duration-300 hover:text-[#D94A2C] cursor-pointer">Logout</span>
               </NavLink>
-            </li>) : (<>
+            </li>) : (
+              <>
 
-              <li>
-                <NavLink to="/log-in">
-                  <span className=" transition-colors duration-300 hover:text-[#D94A2C] cursor-pointer">Login</span>
-                </NavLink>
-              </li>
-            </>)}
+                <li>
+                  <NavLink to="/log-in">
+                    <span className=" transition-colors duration-300 hover:text-[#D94A2C] cursor-pointer">Login</span>
+                  </NavLink>
+                </li>
+              </>
+            )}
 
 
           </ul>

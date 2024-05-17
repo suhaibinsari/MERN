@@ -36,11 +36,11 @@ try{
     req.token = token
     req.userID = userData._id
 
+    next()
 }catch(error){
     console.log('Error from Token Auth Middle-ware',error)
     res.status(401).json({message: "Unauthorized, Invalid Token Middelware auth"})
 }
-next()
 
 }
 
