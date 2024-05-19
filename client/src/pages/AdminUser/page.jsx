@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useAuth } from '../../store/auth'
 
+import { Link } from 'react-router-dom'
 
 export default function AdminUser() {
 
@@ -74,8 +75,7 @@ export default function AdminUser() {
                     <td>{curUser.username}</td>
                     <td>{curUser.email}</td>
                     <td>{curUser.phone}</td>
-                    <td>Edit</td>
-                    {/* <td>Delete</td> */}
+                    <td><Link to={`/admin/users/${curUser._id}/edit`}>Edit</Link></td>
                     <td><button onClick={() => deleteUser(curUser._id)}>a</button></td>
                   </tr>
                 )

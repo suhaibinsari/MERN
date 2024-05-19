@@ -29,6 +29,18 @@ const getAllContacts = async (req, res) => {
     }
 }
 
+//single User Logic
+
+const getUserById = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const data = await User.findOne({ _id: id }, { password: 0 })
+        return res.status(200).json(data)
+    } catch (error) {
+        next(error)
+    }
+}
+
 
 
 const deleteUserById = async (req, res) => {
@@ -37,9 +49,25 @@ const deleteUserById = async (req, res) => {
         await User.deleteOne({ _id: id })
         return res.status(200).json({ message: "User Deleted Successfully" })
     } catch (error) {
+        // next(error)
         next(error)
     }
 }
 
 
-module.exports = { getAllUsers, getAllContacts, deleteUserById }
+const updateUserById = async (req, res) => {
+    try {
+        const id = req.params.id
+        const updateUserData = req.body
+        const updatedUser = await User.updateOne({ _id: id }, {
+            $set: updateUserData
+        })
+        return res.status(200).json(updatedUser)
+    } catch (error) {
+        // next(error)
+        console.log('123 erreo', error)
+    }
+}
+
+
+module.exports = { getAllUsers, getAllContacts, deleteUserById, getUserById, updateUserById }

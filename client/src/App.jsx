@@ -11,6 +11,7 @@ import AdminUser from "./pages/AdminUser/page.jsx"
 import AdminContacts from "./pages/AdminContacts/page.jsx"
 import Navbar from "./components/Navbar.jsx"
 import AdminLayout from "./components/Layout/Admin-Layout.jsx"
+import UpdateUser from "./pages/adminEditUser/page.jsx"
 
 
 
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="/admin" element={<AdminLayout />}>
             <Route path="users" element={<AdminUser />} />
             <Route path="contacts" element={<AdminContacts />} />
+            <Route path="users/:id/edit" element={<UpdateUser />} />
           </Route>
           {/* End */}
         </Routes>
