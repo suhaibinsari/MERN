@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useAuth } from '../../store/auth'
 import Button from '../../components/Button'
 import { NavLink, useNavigate } from 'react-router-dom'
@@ -8,7 +8,7 @@ import { toast } from 'react-toastify'
 
 
 
-export default function page() {
+export default function Login() {
 
   const URL = "http://localhost:3000/api/auth/login"
   const Navigate = useNavigate()
@@ -22,7 +22,7 @@ export default function page() {
   })
 
 
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInput = (e) => {
     console.log(e)
     let name = e.target.name
     let value = e.target.value
@@ -95,7 +95,7 @@ export default function page() {
         <div className='border rounded-xl flex flex-col items-center justify-center w-[18rem] space-y-6 p-4'>
           <div className='w-full'>
             <p>Log in to your account</p>
-            <p>Don't have an account?
+            <p>Don&apos;t have an account?
               <span className='text-blue-500'>
                 <NavLink to="/sign-up">
                   <span className=" transition-colors duration-300 hover:text-[#D94A2C] cursor-pointer"> Sign Up</span>

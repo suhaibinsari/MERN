@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import { useAuth } from '../../store/auth'
-import Contact from '../../../../server/models/contact-model';
+// import Contact from '../../../../server/models/contact-model';
 import { toast } from 'react-toastify';
 
 
-export default function page() {
+export default function Contact() {
 
   const URL = "http://localhost:3000/api/form/contact"
 

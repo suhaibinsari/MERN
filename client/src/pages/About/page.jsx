@@ -1,9 +1,8 @@
-import React from 'react'
 import { useAuth } from '../../store/auth'
 
 
 
-export default function page() {
+export default function About() {
 const { user } = useAuth()
 
   return (

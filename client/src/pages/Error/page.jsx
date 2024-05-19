@@ -1,6 +1,5 @@
-import React from 'react'
 
-export default function page() {
+export default function Error() {
   return (
     <>
       <section className="bg-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
@@ -10,10 +9,10 @@ export default function page() {
               404
             </h1>
             <p className="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl ">
-              Something's missing.
+              Something&apos;s missing.
             </p>
             <p className="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
-              Sorry, we can't find that page. You'll find lots to explore on the home
+              Sorry, we can&apos;t find that page. You&apos;ll find lots to explore on the home
               page.{" "}
             </p>
             <a

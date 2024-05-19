@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useAuth } from '../../store/auth';
 
-export default function Page() {
+export default function Service() {
   const { services } = useAuth();
 
   console.log(services);

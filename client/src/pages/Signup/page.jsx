@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Button from '../../components/Button'
+// import Button from '../../components/Button'
 import { useAuth } from '../../store/auth'
 import { toast } from 'react-toastify'
-export default function page() {
+
+export default function Signup() {
 
 
 
@@ -20,7 +21,7 @@ const URL = "http://localhost:3000/api/auth/register"
   })
 
   // handling input
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInput = (e) => {
     console.log(e)
     let name = e.target.name
     let value = e.target.value
