@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '../../store/auth'
 import { useParams } from 'react-router-dom'
 
+import { toast } from 'react-toastify'
+
 export default function UpdateUser() {
 
 
@@ -15,7 +17,7 @@ export default function UpdateUser() {
   })
 
   const params = useParams()
-  console.log('params',params)
+  console.log('params', params)
   const { authorizationToken } = useAuth()
 
 
@@ -44,12 +46,45 @@ export default function UpdateUser() {
     updateUser()
   }, [])
 
-  const handleSubmit = () => {
 
-  }
-  const handleInput = () => {
 
+  const handleInput = (e) => {
+    let name = e.target.name
+    let value = e.target.value
+    setUserData({
+      ...userData,
+      [name]: value
+    })
   }
+
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await fetch(`http://localhost:3000/api/admin/users/update/${params.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": authorizationToken
+        },
+        body: JSON.stringify(userData)
+      })
+
+      if (response.ok) {
+        toast.success('Updated Successfully')
+
+      } else {
+        toast.error('Updated Successfully')
+
+      }
+
+    } catch (error) {
+      console.log('Admin Contact Delete Error', error)
+    }
+  }
+
+
 
 
 

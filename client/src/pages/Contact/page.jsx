@@ -73,14 +73,7 @@ export default function Contact() {
       console.log('Contact Form Error', error)
     }
 
-
-
   }
-
-
-
-
-
 
   return (
     <>
