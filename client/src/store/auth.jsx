@@ -16,6 +16,7 @@ export const AuthProvider = ({ children }) => {
 
   const [token, setToken] = useState(localStorage.getItem('token'))
   const [user, setUser] = useState('')
+  const [loading, setLoading] = useState(true)
   const [services, setServices] = useState('')
   const authorizationToken = `Bearer ${token}`
 
@@ -43,6 +44,7 @@ export const AuthProvider = ({ children }) => {
 
   const userAuthentication = async () => {
     try {
+      setLoading(true)
       const response = await fetch(userURL,
         {
           method: "GET",
@@ -56,6 +58,10 @@ export const AuthProvider = ({ children }) => {
         const data = await response.json()
         console.log('user-data', data.userData)
         setUser(data.userData)
+        setLoading(false)
+
+      }else{
+        setLoading(false)
 
       }
 
@@ -92,7 +98,7 @@ export const AuthProvider = ({ children }) => {
 
 
   return (
-    <AuthContext.Provider value={{ userIsLoggedIn, storeTokenInLs, LogoutUser, user, services, authorizationToken }}>
+    <AuthContext.Provider value={{ userIsLoggedIn, storeTokenInLs, LogoutUser, user, services, authorizationToken, loading }}>
       {children}
     </AuthContext.Provider>
   )

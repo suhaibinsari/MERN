@@ -1,6 +1,17 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { Navigate, NavLink, Outlet } from 'react-router-dom'
+import { useAuth } from '../../store/auth'
 
 export default function AdminLayout() {
+    const { user, loading } = useAuth();
+
+    if(loading){
+        return <h1>Loading.....</h1>
+    }
+
+    if (!user.isAdmin) {
+        return <Navigate to="/" />
+    }
+
     return (
         <>
             <nav className='bg-gray-400 font-Crafty bg-opacity-25 backdrop-filter rounded-b-3xl w-auto p-4 relative'>
@@ -13,7 +24,7 @@ export default function AdminLayout() {
                     </ul>
                 </nav>
             </nav>
-            <Outlet/>
+            <Outlet />
         </>
     )
 }
