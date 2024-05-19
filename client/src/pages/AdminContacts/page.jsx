@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../store/auth";
 
+import { toast } from "react-toastify";
+
+
 export default function AdmimContacts() {
 
   const [allContacts, setAllContacts] = useState([])
   const { authorizationToken } = useAuth();
 
   const URL = 'http://localhost:3000/api/admin/contacts';
+
   const allContactsData = async () => {
     try {
       const response = await fetch(URL, {
@@ -25,11 +29,33 @@ export default function AdmimContacts() {
     }
   }
 
+  const deleteContact = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/admin/contacts/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Authorization": authorizationToken
+        }
+      })
+
+      if (response.ok) {
+        allContactsData()
+        toast.success('Deleted Successfully')
+
+      } else {
+        toast.error('Error on deletion')
+
+      }
+    } catch (error) {
+      console.log('Admin Contact Delete Error', error)
+    }
+  }
 
 
   useEffect(() => {
     allContactsData()
   }, [])
+
 
   return (
     <>
@@ -51,7 +77,7 @@ export default function AdmimContacts() {
                   <td>{curContact.username}</td>
                   <td>{curContact.email}</td>
                   <td>{curContact.message}</td>
-                  {/* <td><button onClick={() => deleteUser(curContact._id)}>Delete</button></td> */}
+                  <td><button onClick={() => deleteContact(curContact._id)}>Delete</button></td>
                 </tr>
               )
             })}

@@ -30,7 +30,6 @@ export default function Login() {
       ...userLogin,
       [name]: value
     })
-
   }
 
 
